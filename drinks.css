@@ -1,6 +1,16 @@
 /* ============================================================
    BASE RESET & BODY
    ============================================================ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
 body {
     margin: 0;
     font-family: 'Raleway', sans-serif;
@@ -10,12 +20,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    min-height: 100vh;
     overflow-x: hidden;
-}
-
-/* Prevent horizontal overflow globally */
-* {
-    max-width: 100%;
 }
 
 img, video, iframe, canvas {
@@ -23,11 +29,9 @@ img, video, iframe, canvas {
     height: auto;
 }
 
-/* Ensure long words wrap */
 p, li, span, div {
     overflow-wrap: break-word;
     word-wrap: break-word;
-    hyphens: auto;
 }
 
 /* ============================================================
@@ -39,8 +43,7 @@ p, li, span, div {
 .footer,
 header {
     width: 100%;
-    max-width: 100vw;
-    box-sizing: border-box;
+    max-width: 100%;
 }
 
 .header-container {
@@ -78,7 +81,6 @@ header {
     border: 1px solid #444444;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     width: 100%;
-    box-sizing: border-box;
 }
 
 .chapter-intro {
@@ -102,13 +104,12 @@ header {
    ============================================================ */
 .chapter-drink-image {
     display: block;
-    margin: 0 auto;
+    margin: 0 auto 10px auto;
     width: 150px;
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
     box-shadow: 0 4px 8px rgba(255, 235, 59, 0.3);
-    margin-bottom: 10px;
     max-width: 100%;
 }
 
@@ -132,11 +133,10 @@ pre {
     border-radius: 5px;
     overflow-x: auto;
     font-family: 'Courier New', monospace;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 10px 0;
     max-width: 100%;
-    word-wrap: break-word;
     white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
 code {
@@ -149,6 +149,11 @@ code {
     white-space: normal;
 }
 
+pre code {
+    padding: 0;
+    background: transparent;
+}
+
 /* ============================================================
    FOOTER & HEADER
    ============================================================ */
@@ -159,7 +164,6 @@ header {
     padding: 10px;
     width: 100%;
     text-align: center;
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -192,7 +196,7 @@ header {
 }
 
 /* ============================================================
-   BACK-TO-TOP BUTTON — text version "Top"
+   BACK-TO-TOP BUTTON
    ============================================================ */
 #backToTop {
     position: fixed;
@@ -202,7 +206,7 @@ header {
     background: #ffeb3b;
     color: #121212;
     border: none;
-    border-radius: 50px;               /* pill shape fits the text */
+    border-radius: 50px;
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -218,7 +222,7 @@ header {
     box-shadow:
         0 0 10px rgba(255, 235, 59, 0.6),
         0 0 18px rgba(255, 235, 59, 0.4);
-    pointer-events: none;              /* don't block clicks when hidden */
+    pointer-events: none;
 }
 
 #backToTop.visible {
@@ -247,30 +251,20 @@ header {
 table {
     width: 100%;
     max-width: 100%;
-    overflow-x: auto;
-    display: block;
+    border-collapse: collapse;
     margin: 0 auto;
+    display: block;
+    overflow-x: auto;
 }
 
 /* ============================================================
    RESPONSIVE — tablets & below (max 768px)
    ============================================================ */
 @media (max-width: 768px) {
-    body {
-        align-items: center;
-        justify-content: center;
-    }
-
     .chapter {
         padding: 20px 15px;
-        max-width: 95%;
+        max-width: 100%;
         margin: 0 auto;
-        border: 1px solid #444444;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
     }
 
     .header-container {
@@ -278,37 +272,28 @@ table {
         align-items: center;
     }
 
-    .chapter-intro {
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
-        max-width: 100%;
-    }
-
-    .content {
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    h2, h3 {
-        font-size: 1.2em;
-        text-align: center;
-        width: 100%;
-    }
-
     .header-container h1 {
         font-size: 1.5em;
-        text-align: center;
     }
 
     .header-container p {
         font-size: 0.9em;
-        text-align: center;
-        max-width: 100%;
+    }
+
+    .chapter-intro,
+    .content {
+        text-align: left;
+        padding: 0 5px;
+    }
+
+    .chapter-intro p,
+    .content p {
+        text-align: left;
+    }
+
+    h2, h3 {
+        font-size: 1.2em;
+        text-align: left;
     }
 
     .chapter-drink-image {
@@ -317,18 +302,18 @@ table {
         margin: 0 auto 15px auto;
     }
 
-    pre, code {
+    pre {
         font-size: 0.9em;
         text-align: left;
         width: 100%;
-        max-width: 100%;
-        margin-left: auto;
-        margin-right: auto;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 10px;
     }
 
-    pre {
+    code {
+        font-size: 0.9em;
         text-align: left;
-        width: calc(100% - 30px);
     }
 
     .social-icon {
@@ -336,19 +321,12 @@ table {
         margin: 0 8px;
     }
 
-    p, ul, ol {
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
-        width: 100%;
-        max-width: 100%;
-    }
-
     ul, ol {
-        padding-left: 0;
-        list-style-position: inside;
-        display: inline-block;
+        padding-left: 20px;
+        list-style-position: outside;
         text-align: left;
+        display: block;
+        width: auto;
     }
 
     li {
@@ -361,32 +339,26 @@ table {
    RESPONSIVE — small phones (max 480px)
    ============================================================ */
 @media (max-width: 480px) {
+    .chapter {
+        padding: 15px 10px;
+    }
+
     .header-container h1 {
         font-size: 1.3em;
-        text-align: center;
     }
 
     .header-container p {
         font-size: 0.85em;
-        text-align: center;
     }
 
     .chapter-intro,
     .content {
         font-size: 0.95em;
-        text-align: center;
-        width: 100%;
-    }
-
-    .content p {
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
+        padding: 0;
     }
 
     h2, h3 {
         font-size: 1.1em;
-        text-align: center;
     }
 
     .chapter-drink-image {
@@ -397,7 +369,6 @@ table {
 
     .social-media {
         gap: 10px;
-        justify-content: center;
     }
 
     .social-icon {
@@ -405,16 +376,9 @@ table {
         margin: 0 5px;
     }
 
-    .chapter > * {
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
     pre {
-        text-align: left;
-        margin: 10px auto;
-        width: calc(100% - 20px);
+        font-size: 0.85em;
+        padding: 8px;
     }
 
     #backToTop {
@@ -436,7 +400,7 @@ table {
 }
 
 /* ============================================================
-   DESKTOP — restore left-aligned reading layout (min 769px)
+   DESKTOP — left-aligned reading layout (min 769px)
    ============================================================ */
 @media (min-width: 769px) {
     .chapter-intro,
